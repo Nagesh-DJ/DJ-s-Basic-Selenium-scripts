@@ -13,7 +13,6 @@ public class a_BrokenLinks {
 
     public static void main(String[] args) {
         // Set path to chromedriver
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
 
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
