@@ -18,12 +18,15 @@ public class a_BrokenLinks {
         driver.manage().window().maximize();
 
         // Open the webpage
-        driver.get("https://www.amazon.com");
+        driver.get("https://www.flipkart.com");
 
         // Get all <a> tags
         List<WebElement> links = driver.findElements(By.tagName("a"));
         System.out.println("Total links found: " + links.size());
 
+        	int  validLinks=0;
+        	int  brokenLinks=0;
+        	int  inValidLinks=0;
         // Check each link
         for (WebElement link : links) {
             String url = link.getAttribute("href");
@@ -37,17 +40,23 @@ public class a_BrokenLinks {
                     int responseCode = connection.getResponseCode();
                     if (responseCode >= 400) {
                         System.out.println("Broken link: " + url + " - Response code: " + responseCode);
+                        brokenLinks++;
                     } else {
                         System.out.println("Valid link: " + url + " - Response code: " + responseCode);
+                        	validLinks++;
                     }
                 } catch (Exception e) {
                     System.out.println("Error checking link: " + url + " - Exception: " + e.getMessage());
                 }
             } else {
                 System.out.println("Empty or invalid link: " + link.getText());
+                inValidLinks++;
             }
         }
-
+        System.out.println("Total links found: " + links.size());
+        System.out.println("Total validLinks found: " +validLinks);
+        System.out.println("Total inValidLinks found: " +inValidLinks);
+        System.out.println("Total brokenLinks found: " +brokenLinks);
         // Close the browser
         driver.quit();
     }
